@@ -1,0 +1,42 @@
+{
+  "manifest_version": 3,
+  "name": "intercept request",
+  "description": "Some Desc.",
+  "version": "1.0",
+  "action": {},
+  "background": {
+    "service_worker": "service_work.js"
+  },
+  "permissions": [
+    "tabs",
+    "activeTab",
+    "webRequest",
+    "*://*.google.com/"
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "./content.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "iframe/dist/index.html"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ]
+}
